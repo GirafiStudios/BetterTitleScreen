@@ -7,10 +7,12 @@ import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
 
+import static net.minecraftforge.common.config.Configuration.*;
+
 public class ConfigurationHandler
 {
     public static Configuration configuration;
-    public static String TitleScreenText;
+    public static String[] TitleScreenText;
 
     public static void init(File configFile)
     {
@@ -24,7 +26,7 @@ public class ConfigurationHandler
 
     private static void loadConfiguration()
     {
-        TitleScreenText = configuration.getString("Text", Configuration.CATEGORY_GENERAL, "§4B§6E§eT§2T§3E§1R §5T§4I§6T§eL§2E §3S§1C§5R§4E§6E§eN", "Insert the text you want here.");
+        TitleScreenText = configuration.getStringList("Text", CATEGORY_GENERAL, new String[]{"§4B§6E§eT§2T§3E§1R §5T§4I§6T§eL§2E §3S§1C§5R§4E§6E§eN"}, "Insert the text you want here.");
 
         if (configuration.hasChanged())
         {

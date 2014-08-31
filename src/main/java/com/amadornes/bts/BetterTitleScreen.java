@@ -33,13 +33,13 @@ public class BetterTitleScreen {
     {
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
 
         readConfig();
-
 
         Field f = ReflectUtilities.getField(FMLCommonHandler.instance(), "brandings");
         f.setAccessible(true);
@@ -86,7 +86,7 @@ public class BetterTitleScreen {
         }
 
     }
-    
+
     private List<String> readResource(String file) {
 
         List<String> text = new ArrayList<String>();
