@@ -11,8 +11,7 @@ import java.io.File;
 public class ConfigurationHandler
 {
     public static Configuration configuration;
-    public static String TestText;
-    private static String[] disableMobNames = new String[0];
+    public static String Text;
 
     public static void init(File configFile)
     {
@@ -26,7 +25,7 @@ public class ConfigurationHandler
 
     private static void loadConfiguration()
     {
-        TestText = configuration.get("General", "Text", "§4B§6E§eT§2T§3E§1R §5T§4I§6T§eL§2E §3S§1C§5R§4E§6E§eN").getString();
+        Text = configuration.getString("Text", Configuration.CATEGORY_GENERAL, "§4B§6E§eT§2T§3E§1R §5T§4I§6T§eL§2E §3S§1C§5R§4E§6E§eN", "Insert the text you want here.");
 
         if (configuration.hasChanged())
         {

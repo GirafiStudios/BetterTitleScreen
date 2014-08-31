@@ -52,19 +52,17 @@ public class BetterTitleScreen {
             f.set(FMLCommonHandler.instance(), newBrands);
         } catch (Exception e) {
             e.printStackTrace();
-            System.exit(0);
+
         }
     }
 
     private void readConfig() {
 
-        List<String> text = readResource("BetterTitleScreen.cfg");
+        List<String> TestText = readResource("BetterTitleScreen.cfg");
 
         if (text == null) {
             this.text = new ArrayList<String>();
             File file = new File("config/BetterTitleScreen.cfg");
-            file.getParentFile().mkdir();
-            file.getParentFile().mkdirs();
 
             if (!file.exists()) try {
             } catch (Exception e) {
@@ -81,36 +79,35 @@ public class BetterTitleScreen {
                 fr.close();
             } catch (Exception e) {
             }
-        } else {
-            this.text = text;
+
         }
 
     }
     
     private List<String> readResource(String file) {
-    
+
         List<String> text = new ArrayList<String>();
-        
+
         try {
             InputStream input = getClass().getResourceAsStream(file);
             BufferedReader br = new BufferedReader(new InputStreamReader(input));
-            
+
             while (br.ready())
                 text.add(br.readLine());
-            
+
             br.close();
         } catch (Exception e1) {
             return null;
         }
-        
+
         boolean empty = true;
-        
+
         for (String s : text)
             if (s.trim().length() > 0) {
                 empty = false;
                 break;
             }
-        
+
         return empty ? null : text;
     }
     @Mod.EventHandler
