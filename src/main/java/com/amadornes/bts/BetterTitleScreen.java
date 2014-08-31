@@ -10,12 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.amadornes.bts.handler.ConfigurationHandler;
 import com.amadornes.bts.reference.Reference;
 import com.amadornes.bts.reflect.ReflectUtilities;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, acceptableRemoteVersions = "*")
 public class BetterTitleScreen {
@@ -23,10 +25,18 @@ public class BetterTitleScreen {
     private List<String> text;
 
     @SuppressWarnings("unchecked")
-    @EventHandler
-    public void init(FMLInitializationEvent ev) {
-    
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+        FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
+
         readConfig();
+
 
         Field f = ReflectUtilities.getField(FMLCommonHandler.instance(), "brandings");
         f.setAccessible(true);
@@ -45,29 +55,28 @@ public class BetterTitleScreen {
             System.exit(0);
         }
     }
-    
+
     private void readConfig() {
-    
+
         List<String> text = readResource("BetterTitleScreen.cfg");
-        
+
         if (text == null) {
             this.text = new ArrayList<String>();
             File file = new File("config/BetterTitleScreen.cfg");
             file.getParentFile().mkdir();
             file.getParentFile().mkdirs();
-            
+
             if (!file.exists()) try {
-                file.createNewFile();
             } catch (Exception e) {
             }
-            
+
             try {
                 FileReader fr = new FileReader(file);
                 BufferedReader br = new BufferedReader(fr);
-                
+
                 while (br.ready())
                     this.text.add(br.readLine());
-                
+
                 br.close();
                 fr.close();
             } catch (Exception e) {
@@ -75,7 +84,7 @@ public class BetterTitleScreen {
         } else {
             this.text = text;
         }
-        
+
     }
     
     private List<String> readResource(String file) {
@@ -104,5 +113,9 @@ public class BetterTitleScreen {
         
         return empty ? null : text;
     }
-    
+    @Mod.EventHandler
+    public void init (FMLPostInitializationEvent event)
+    {
+
+    }
 }
