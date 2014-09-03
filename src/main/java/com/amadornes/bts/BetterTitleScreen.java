@@ -1,12 +1,8 @@
 package com.amadornes.bts;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -19,13 +15,13 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
+import static com.amadornes.bts.handler.ConfigurationHandler.TitleScreenText;
+
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptableRemoteVersions = "*")
 public class BetterTitleScreen {
 
     @Mod.Instance(Reference.MOD_ID)
     public static BetterTitleScreen instance;
-
-    private List<String> text;
 
     @SuppressWarnings("unchecked")
     @Mod.EventHandler
@@ -39,8 +35,6 @@ public class BetterTitleScreen {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
 
-        readConfig();
-
         Field f = ReflectUtilities.getField(FMLCommonHandler.instance(), "brandings");
         f.setAccessible(true);
         try {
@@ -49,7 +43,7 @@ public class BetterTitleScreen {
             List<String> newBrands = new ArrayList<String>();
             newBrands.add(brands.get(0));
 
-            newBrands.addAll(text);
+            Collections.addAll(newBrands, TitleScreenText);
 
             newBrands.add(brands.get(brands.size() - 1));
             f.set(FMLCommonHandler.instance(), newBrands);
@@ -59,60 +53,6 @@ public class BetterTitleScreen {
         }
     }
 
-    private void readConfig() {
-
-        List<String> TestText = readResource("BetterTitleScreen.cfg");
-
-        if (text == null) {
-            this.text = new ArrayList<String>();
-            File file = new File("config/BetterTitleScreen.cfg");
-
-            if (!file.exists()) try {
-            } catch (Exception e) {
-            }
-
-            try {
-                FileReader fr = new FileReader(file);
-                BufferedReader br = new BufferedReader(fr);
-
-                while (br.ready())
-                    this.text.add(br.readLine());
-
-                br.close();
-                fr.close();
-            } catch (Exception e) {
-            }
-
-        }
-
-    }
-
-    private List<String> readResource(String file) {
-
-        List<String> text = new ArrayList<String>();
-
-        try {
-            InputStream input = getClass().getResourceAsStream(file);
-            BufferedReader br = new BufferedReader(new InputStreamReader(input));
-
-            while (br.ready())
-                text.add(br.readLine());
-
-            br.close();
-        } catch (Exception e1) {
-            return null;
-        }
-
-        boolean empty = true;
-
-        for (String s : text)
-            if (s.trim().length() > 0) {
-                empty = false;
-                break;
-            }
-
-        return empty ? null : text;
-    }
     @Mod.EventHandler
     public void init (FMLPostInitializationEvent event)
     {
