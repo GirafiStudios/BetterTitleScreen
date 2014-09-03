@@ -30,6 +30,7 @@ public class BetterTitleScreen {
     public void init(FMLInitializationEvent event)
     {
     FMLCommonHandler.instance().bus().register(new TitleScreenHandler());
+
     }
 
     @Mod.EventHandler

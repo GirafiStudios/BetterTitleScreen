@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.amadornes.bts.handler.ConfigurationHandler.TitleScreenText;
+import static com.amadornes.bts.handler.ConfigurationHandler.*;
 
 public class TitleScreenHandler{
 
@@ -24,8 +24,51 @@ public class TitleScreenHandler{
 
                 Collections.addAll(newBrands, TitleScreenText);
 
-                newBrands.add(brands.get(brands.size() - 1));
                 f.set(FMLCommonHandler.instance(), newBrands);
+
+                if (TitleScreenMCP == true)
+                    try {
+                        newBrands.add(brands.get(brands.size() - 4));
+                    }
+                    finally {
+                        if (TitleScreenMCP == false)
+                             {
+                                newBrands.add(brands.get(0));
+                            }
+                    }
+
+                if (TitleScreenFML == true)
+                    try {
+                        newBrands.add(brands.get(brands.size() - 3));
+                    }
+                    finally {
+                        if (TitleScreenFML == false)
+                            {
+                               newBrands.add(brands.get(0));
+                            }
+                    }
+
+                if (TitleScreenForge == true)
+                    try {
+                        newBrands.add(brands.get(brands.size() - 2));
+                    }
+                    finally {
+                        if (TitleScreenForge == false)
+                        {
+                            newBrands.add(brands.get(0));
+                        }
+                    }
+
+                if (TitleScreenMods == true)
+                    try {
+                        newBrands.add(brands.get(brands.size() - 1));
+                    }
+                    finally {
+                        if (TitleScreenMods == false)
+                        {
+                            newBrands.add(brands.get(0));
+                        }
+                    }
 
             } catch (Exception e) {
                 e.printStackTrace();
