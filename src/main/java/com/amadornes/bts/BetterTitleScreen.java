@@ -47,6 +47,7 @@ public class BetterTitleScreen {
 
             newBrands.add(brands.get(brands.size() - 1));
             f.set(FMLCommonHandler.instance(), newBrands);
+
         } catch (Exception e) {
             e.printStackTrace();
 
