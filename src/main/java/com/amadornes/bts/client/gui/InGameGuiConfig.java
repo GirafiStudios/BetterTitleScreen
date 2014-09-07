@@ -17,7 +17,7 @@ public class InGameGuiConfig extends GuiConfig
 {
     public InGameGuiConfig(GuiScreen parent)
     {
-        super(parent, InGameGuiConfig.getConfigElements(), Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(ConfigurationHandler.configuration.toString()));
+        super(parent, InGameGuiConfig.getConfigElements(), Reference.MOD_ID, false, true, GuiConfig.getAbridgedConfigPath(ConfigurationHandler.configuration.toString()));
     }
 
     private  static List<IConfigElement> getConfigElements() {

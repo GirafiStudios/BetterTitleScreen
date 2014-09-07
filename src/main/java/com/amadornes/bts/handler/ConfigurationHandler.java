@@ -12,7 +12,7 @@ import static net.minecraftforge.common.config.Configuration.*;
 public class ConfigurationHandler
 {
     public static Configuration configuration;
-    public static String CATEGORY_CUSTOM_TEXT = "Custom Text";
+    public static String CATEGORY_CUSTOM_TEXT = "custom text";
     public static String[] TitleScreenText;
     public static boolean TitleScreenMCVersion;
     public static boolean TitleScreenMCP;
