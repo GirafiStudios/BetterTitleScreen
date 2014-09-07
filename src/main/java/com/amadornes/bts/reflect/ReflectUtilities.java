@@ -5,14 +5,6 @@ import java.lang.reflect.Method;
 
 public class ReflectUtilities {
 
-    public static <T> T getFieldValue(Object object, String name) {
-
-        if (object == null) return null;
-
-        return getFieldValue(object, object.getClass(), name);
-    }
-
-
     @SuppressWarnings("unchecked")
     private static <T> T getFieldValue(Object object, Class<?> c, String name) {
 
@@ -38,24 +30,9 @@ public class ReflectUtilities {
         }
         System.out.println("ERR");
         return null;
+
     }
 
-    public static Method getMethod(Object object, String name, Class<?>[] params) {
-        if (object == null) return null;
-        return getMethod(object, object.getClass(), name, params);
-    }
-    private static Method getMethod(Object object, Class<?> c, String name, Class<?>[] params) {
-
-        try {
-            return object.getClass().getDeclaredMethod(name, params);
-        } catch (Exception ex) {
-        }
-        try {
-            return getMethod(object, c.getSuperclass(), name, params);
-        } catch (Exception ex) {
-        }
-        return null;
-    }
     public static Field getField(Object object, String name) {
         if (object == null) return null;
         return getField(object, object.getClass(), name);
