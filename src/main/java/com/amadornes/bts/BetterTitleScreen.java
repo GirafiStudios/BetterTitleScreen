@@ -5,6 +5,7 @@ import com.amadornes.bts.handler.TitleScreenHandler;
 import com.amadornes.bts.proxy.IProxy;
 import com.amadornes.bts.reference.Reference;
 
+import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -19,13 +20,14 @@ public class BetterTitleScreen {
     @Mod.Instance(Reference.MOD_ID)
     public static BetterTitleScreen instance;
 
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS)
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = ("Better Title Screen is a client-side only mod"))
     public static IProxy proxy;
 
     @SuppressWarnings("unchecked")
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
 
@@ -34,7 +36,8 @@ public class BetterTitleScreen {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-    FMLCommonHandler.instance().bus().register(new TitleScreenHandler());
+
+        FMLCommonHandler.instance().bus().register(new TitleScreenHandler());
 
     }
 
