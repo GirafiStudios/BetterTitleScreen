@@ -5,7 +5,6 @@ import com.amadornes.bts.handler.TitleScreenHandler;
 import com.amadornes.bts.proxy.IProxy;
 import com.amadornes.bts.reference.Reference;
 
-import cpw.mods.fml.client.config.GuiConfigEntries;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
