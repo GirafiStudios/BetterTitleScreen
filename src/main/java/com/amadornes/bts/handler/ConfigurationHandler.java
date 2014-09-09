@@ -13,6 +13,7 @@ public class ConfigurationHandler
 {
     public static Configuration configuration;
     public static String CATEGORY_CUSTOM_TEXT = "custom text";
+    public static String DefaultText = "\u00A74B\u00A76E\u00A7eT\u00A72T\u00A73E\u00A71R \u00A75T\u00A74I\u00A76T\u00A7eL\u00A72E \u00A73S\u00A71C\u00A75R\u00A74E\u00A76E\u00A7eN";
     public static String[] TitleScreenText;
     public static boolean TitleScreenMCVersion;
     public static boolean TitleScreenMCP;
@@ -31,7 +32,7 @@ public class ConfigurationHandler
 
     private static void loadConfiguration()
     {
-        TitleScreenText = configuration.getStringList("Text", CATEGORY_CUSTOM_TEXT, new String[]{"\u00A74B\u00A76E\u00A7eT\u00A72T\u00A73E\u00A71R \u00A75T\u00A74I\u00A76T\u00A7eL\u00A72E \u00A73S\u00A71C\u00A75R\u00A74E\u00A76E\u00A7eN"}, "Insert the text you want here.(Supports multiple lines)");
+        TitleScreenText = configuration.getStringList("Text", CATEGORY_CUSTOM_TEXT, new String[]{DefaultText}, "Insert the text you want here.(Supports multiple lines)");
         TitleScreenMCVersion = configuration.getBoolean("Show MC version", CATEGORY_GENERAL, true, "Show which version of Minecraft the client is currently running.");
         TitleScreenMCP = configuration.getBoolean("Show MCP version", CATEGORY_GENERAL, false, "Show which version of Minecraft Coder Pack (MCP) the client is running.");
         TitleScreenFML = configuration.getBoolean("Show FML version", CATEGORY_GENERAL, false, "Show which version of Forge Mod Loader (FML) the client is running.");
