@@ -30,7 +30,6 @@ public class InGameGuiConfig extends GuiConfig
                 list.add(new DummyConfigElement.DummyCategoryElement("Custom Text", "ConfigurationHandler.CATEGORY_CUSTOM_TEXT", listCustomText));
                 list.add(new DummyConfigElement.DummyCategoryElement("General", "Configuration.CATEGORY_GENERAL", general));
 
-
                 return list;
     }
 }
