@@ -19,7 +19,7 @@ apply plugin: 'forge'
 
 version = "1.7.10-1.1"
 group= "com.amadornes.bts" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "BetterTileScreen"
+archivesBaseName = "BetterTitleScreen"
 
 minecraft {
     version = "1.7.10-10.13.0.1208"
