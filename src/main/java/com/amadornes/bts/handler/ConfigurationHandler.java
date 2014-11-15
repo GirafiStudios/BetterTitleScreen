@@ -32,12 +32,12 @@ public class ConfigurationHandler
 
     private static void loadConfiguration()
     {
-        TitleScreenText = configuration.getStringList("Text", CATEGORY_CUSTOM_TEXT, new String[]{DefaultText}, "Insert the text you want here.(Supports multiple lines)");
+        TitleScreenText = configuration.getStringList("Text", CATEGORY_CUSTOM_TEXT, new String[]{DefaultText}, "Insert the text you want here (supports multiple lines).");
         TitleScreenMCVersion = configuration.getBoolean("Show MC version", CATEGORY_GENERAL, true, "Show which version of Minecraft the client is currently running.");
         TitleScreenMCP = configuration.getBoolean("Show MCP version", CATEGORY_GENERAL, false, "Show which version of Minecraft Coder Pack (MCP) the client is running.");
         TitleScreenFML = configuration.getBoolean("Show FML version", CATEGORY_GENERAL, false, "Show which version of Forge Mod Loader (FML) the client is running.");
         TitleScreenForge = configuration.getBoolean("Show Forge version", CATEGORY_GENERAL, false, "Show which version of Minecraft Forge the client is running.");
-        TitleScreenMods = configuration.getBoolean("Show mods loaded", CATEGORY_GENERAL, true, "Show how many mods is loaded.");
+        TitleScreenMods = configuration.getBoolean("Show mods loaded", CATEGORY_GENERAL, true, "Show how many mods are loaded.");
 
         if (configuration.hasChanged())
         {
