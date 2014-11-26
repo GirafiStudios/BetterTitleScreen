@@ -24,8 +24,8 @@ public class InGameGuiConfig extends GuiConfig
 
         List<IConfigElement> list = new ArrayList<IConfigElement>();
 
-        List<InGameGuiConfig> listCustomText = new ConfigElement(ConfigurationHandler.configuration.getCategory(ConfigurationHandler.CATEGORY_CUSTOM_TEXT)).getChildElements();
-        List<InGameGuiConfig> general = new ConfigElement(ConfigurationHandler.configuration.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements();
+        List<IConfigElement> listCustomText = new ConfigElement(ConfigurationHandler.configuration.getCategory(ConfigurationHandler.CATEGORY_CUSTOM_TEXT)).getChildElements();
+        List<IConfigElement> general = new ConfigElement(ConfigurationHandler.configuration.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements();
 
         list.add(new DummyConfigElement.DummyCategoryElement("Custom Text", "ConfigurationHandler.CATEGORY_CUSTOM_TEXT", listCustomText));
         list.add(new DummyConfigElement.DummyCategoryElement("General", "Configuration.CATEGORY_GENERAL", general));
