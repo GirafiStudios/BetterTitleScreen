@@ -6,6 +6,7 @@ import com.amadornes.bts.proxy.IProxy;
 import com.amadornes.bts.reference.Reference;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -29,6 +30,11 @@ public class BetterTitleScreen {
 
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+
+        //if (Loader.instance().isModLoaded() == true)
+            //{
+
+            //}
 
     }
 
