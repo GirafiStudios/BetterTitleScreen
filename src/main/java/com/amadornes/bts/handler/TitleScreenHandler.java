@@ -23,37 +23,36 @@ public class TitleScreenHandler{
 
                 f.set(FMLCommonHandler.instance(), newBrands);
 
-                if (TitleScreenMCVersion == true)
+                if (TitleScreenMCVersion)
                     {
                         newBrands.add(brands.get(0));
                     }
 
                 Collections.addAll(newBrands, TitleScreenText);
 
-                if (TitleScreenMCP == true)
+                if (TitleScreenMCP)
                     {
                         newBrands.add(brands.get(brands.size() - 4));
                     }
 
-                if (TitleScreenFML == true)
+                if (TitleScreenFML)
                     {
                         newBrands.add(brands.get(brands.size() - 3));
                     }
 
-                if (TitleScreenForge == true)
+                if (TitleScreenForge)
                     {
                         newBrands.add(brands.get(brands.size() - 2));
                     }
 
 
-                if (TitleScreenMods == true)
+                if (TitleScreenMods)
                     {
                         newBrands.add(brands.get(brands.size() - 1));
                     }
 
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
         }
 
