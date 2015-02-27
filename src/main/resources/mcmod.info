@@ -3,8 +3,8 @@
   "modid": "BetterTitleScreen",
   "name": "Better Title Screen",
   "description": "Better Title Screen is a client-side mod that provides options to customize Minecraft's title screen.",
-  "version": "1.8-1.1a",
-  "mcversion": "1.8",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "url": "http://minecraft.curseforge.com/mc-mods/224223",
   "updateUrl": "",
   "authorList": [

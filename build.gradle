@@ -17,54 +17,65 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.8-1.1a"
-group= "com.amadornes.bts" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+ext.buildnumber=""
+if (System.getenv().BUILD_NUMBER) {
+    ext.buildnumber="-" + System.getenv().BUILD_NUMBER
+}
+
+version = "${minecraft_version}-${mod_version}${buildnumber}"
+group = "com.amadornes.bts"
 archivesBaseName = "BetterTitleScreen"
 
 minecraft {
-    version = "1.8-11.14.0.1239-1.8"
+    version = "${minecraft_version}-${forge_version}"
     runDir = "eclipse"
-    
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not allways work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_nodoc_20140930"
+    mappings = "snapshot_20141130"
+
+    replace "@VERSION@", project.mod_version
+    replaceIn "Reference.java"
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
+processResources {
+    inputs.property "version", project.mod_version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        include '**/*.info'
+        include '**/*.properties'
+
+        expand 'version': project.mod_version, 'mcversion': project.minecraft.version
     }
-        
-    // copy everything else, thats not the mcmod.info
+
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude '**/*.info'
+        exclude '**/*.properties'
     }
+}
+
+jar {
+    manifest {
+        attributes 'FMLAT': 'enchiridion_at.cfg'
+    }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'src'
+}
+
+task deobfJar(type: Jar) {
+    manifest {
+        attributes 'FMLAT': 'enchiridion_at.cfg'
+    }
+    from sourceSets.main.output
+    classifier = 'dev'
+}
+
+artifacts {
+    archives deobfJar
+    archives sourceJar
 }
