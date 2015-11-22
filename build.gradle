@@ -1,25 +1,5 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-    }
-}
-
-apply plugin: 'forge'
-
-ext.buildnumber=""
-if (System.getenv().BUILD_NUMBER) {
-    ext.buildnumber="-" + System.getenv().BUILD_NUMBER
+plugins {
+    id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 
 version = "${minecraft_version}-${mod_version}${buildnumber}"
@@ -28,7 +8,9 @@ archivesBaseName = "BetterTitleScreen"
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
-    runDir = "eclipse"
+    mappings = "snapshot_20141130"
+	// makeObfSourceJar = false
+    runDir = "run"
 
     replace "@VERSION@", project.mod_version
     replaceIn "Reference.java"
@@ -45,7 +27,6 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
         include '**/*.properties'
-
         expand 'version': project.mod_version, 'mcversion': project.minecraft.version
     }
 
@@ -55,26 +36,16 @@ processResources {
     }
 }
 
-jar {
-    manifest {
-        attributes 'FMLAT': 'enchiridion_at.cfg'
-    }
-}
-
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
     classifier = 'src'
 }
 
 task deobfJar(type: Jar) {
-    manifest {
-        attributes 'FMLAT': 'enchiridion_at.cfg'
-    }
     from sourceSets.main.output
     classifier = 'dev'
 }
 
 artifacts {
     archives deobfJar
-    archives sourceJar
 }
