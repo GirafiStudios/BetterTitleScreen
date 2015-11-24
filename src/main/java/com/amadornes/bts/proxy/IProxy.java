@@ -1,5 +1,4 @@
 package com.amadornes.bts.proxy;
 
-public interface IProxy
-{
+public interface IProxy {
 }

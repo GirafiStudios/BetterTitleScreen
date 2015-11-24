@@ -1,15 +1,24 @@
-plugins {
-    id "net.minecraftforge.gradle.forge" version "2.0.2"
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
 }
+apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "${minecraft_version}-${mod_version}${buildnumber}"
+version = "${minecraft_version}-${mod_version}"
 group = "com.amadornes.bts"
 archivesBaseName = "BetterTitleScreen"
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
-    mappings = "snapshot_20141130"
-	// makeObfSourceJar = false
+    mappings = "snapshot_20151122"
     runDir = "run"
 
     replace "@VERSION@", project.mod_version
@@ -34,11 +43,6 @@ processResources {
         exclude '**/*.info'
         exclude '**/*.properties'
     }
-}
-
-task sourceJar(type: Jar) {
-    from sourceSets.main.allSource
-    classifier = 'src'
 }
 
 task deobfJar(type: Jar) {

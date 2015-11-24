@@ -1,6 +1,4 @@
 package com.amadornes.bts.proxy;
 
-public class ClientProxy extends CommonProxy
-{
-
+public class ClientProxy extends CommonProxy {
 }

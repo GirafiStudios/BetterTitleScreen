@@ -10,51 +10,36 @@ import java.util.List;
 
 import static com.amadornes.bts.handler.ConfigurationHandler.*;
 
-public class TitleScreenHandler{
+public class TitleScreenHandler {
+    {
+        Field f = ReflectUtilities.getField(FMLCommonHandler.instance(), "brandings");
+        f.setAccessible(true);
+        try {
+            FMLCommonHandler.instance().computeBranding();
+            List<String> brands = new ArrayList<String>((List<String>) f.get(FMLCommonHandler.instance()));
+            List<String> newBrands = new ArrayList<String>();
 
-        {
+            f.set(FMLCommonHandler.instance(), newBrands);
 
-            Field f = ReflectUtilities.getField(FMLCommonHandler.instance(), "brandings");
-            f.setAccessible(true);
-            try {
-                FMLCommonHandler.instance().computeBranding();
-                List<String> brands = new ArrayList<String>((List<String>) f.get(FMLCommonHandler.instance()));
-                List<String> newBrands = new ArrayList<String>();
-
-                f.set(FMLCommonHandler.instance(), newBrands);
-
-                if (TitleScreenMCVersion == true)
-                    {
-                        newBrands.add(brands.get(0));
-                    }
-
-                Collections.addAll(newBrands, TitleScreenText);
-
-                if (TitleScreenMCP == true)
-                    {
-                        newBrands.add(brands.get(brands.size() - 4));
-                    }
-
-                if (TitleScreenFML == true)
-                    {
-                        newBrands.add(brands.get(brands.size() - 3));
-                    }
-
-                if (TitleScreenForge == true)
-                    {
-                        newBrands.add(brands.get(brands.size() - 2));
-                    }
-
-
-                if (TitleScreenMods == true)
-                    {
-                        newBrands.add(brands.get(brands.size() - 1));
-                    }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-
+            if (TitleScreenMCVersion) {
+                newBrands.add(brands.get(0));
             }
-        }
+            Collections.addAll(newBrands, TitleScreenText);
 
+            if (TitleScreenMCP) {
+                newBrands.add(brands.get(brands.size() - 4));
+            }
+            if (TitleScreenFML) {
+                newBrands.add(brands.get(brands.size() - 3));
+            }
+            if (TitleScreenForge) {
+                newBrands.add(brands.get(brands.size() - 2));
+            }
+            if (TitleScreenMods) {
+                newBrands.add(brands.get(brands.size() - 1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
