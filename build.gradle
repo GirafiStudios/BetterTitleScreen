@@ -18,7 +18,7 @@ archivesBaseName = "BetterTitleScreen"
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
-    mappings = "snapshot_20151122"
+    mappings = mappings_version
     runDir = "run"
 
     replace "@VERSION@", project.mod_version
