@@ -14,18 +14,17 @@ import java.util.List;
 
 public class InGameGuiConfig extends GuiConfig {
     public InGameGuiConfig(GuiScreen parent) {
-        super(parent, InGameGuiConfig.getConfigElements(), Reference.MOD_ID, false, true, GuiConfig.getAbridgedConfigPath(ConfigurationHandler.configuration.toString()));
+        super(parent, InGameGuiConfig.getConfigElements(), Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(ConfigurationHandler.config.toString()));
     }
 
     private static List<IConfigElement> getConfigElements() {
-
         List<IConfigElement> list = new ArrayList<IConfigElement>();
 
-        List<IConfigElement> listCustomText = new ConfigElement(ConfigurationHandler.configuration.getCategory(ConfigurationHandler.CATEGORY_CUSTOM_TEXT)).getChildElements();
-        List<IConfigElement> general = new ConfigElement(ConfigurationHandler.configuration.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements();
+        List<IConfigElement> listCustomText = new ConfigElement(ConfigurationHandler.config.getCategory(ConfigurationHandler.CATEGORY_CUSTOM_TEXT)).getChildElements();
+        List<IConfigElement> general = new ConfigElement(ConfigurationHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements();
 
-        list.add(new DummyConfigElement.DummyCategoryElement("Custom Text", "ConfigurationHandler.CATEGORY_CUSTOM_TEXT", listCustomText));
-        list.add(new DummyConfigElement.DummyCategoryElement("General", "Configuration.CATEGORY_GENERAL", general));
+        list.add(new DummyConfigElement.DummyCategoryElement("Custom Text", Reference.MOD_ID.toLowerCase() + ".config.category.listCustomText", listCustomText));
+        list.add(new DummyConfigElement.DummyCategoryElement("General", Reference.MOD_ID.toLowerCase() + ".config.category.listCustomText", general));
 
         return list;
     }
