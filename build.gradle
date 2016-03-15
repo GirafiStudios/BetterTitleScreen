@@ -28,7 +28,7 @@ archivesBaseName = "BetterTitleScreen"
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
-    runDir = "eclipse"
+    runDir = "run"
 
     replace "@VERSION@", project.mod_version
     replaceIn "Reference.java"
