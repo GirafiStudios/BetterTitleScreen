@@ -12,7 +12,12 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "${minecraft_version}-${mod_version}"
+ext.buildnumber=""
+if (System.getenv().BUILD_NUMBER) {
+    ext.buildnumber="-" + System.getenv().BUILD_NUMBER
+}
+
+version = "${minecraft_version}-${mod_version}${buildnumber}"
 group = "com.amadornes.bts"
 archivesBaseName = "BetterTitleScreen"
 
