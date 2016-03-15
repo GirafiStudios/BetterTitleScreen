@@ -1,11 +1,26 @@
-/.gradle/
-/build/
-/eclipse/
-/gradle/
-/out/
-/run/
-*.iml
-*.iws
-*.ipr
+# eclipse
+bin
+*.launch
+.settings
+.metadata
 .classpath
-*.gitignore
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+libs
+.gitignore
+gradlew
+*.bat
