@@ -1,5 +1,4 @@
 /.gradle/
-/gradle/
 /build/
 /eclipse/
 /gradle/
@@ -9,6 +8,4 @@
 *.iws
 *.ipr
 .classpath
-gradlew
-gradlew.bat
 *.gitignore
