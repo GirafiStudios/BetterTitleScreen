@@ -55,21 +55,12 @@ processResources {
     }
 }
 
-jar {
-    manifest {
-        attributes 'FMLAT': 'enchiridion_at.cfg'
-    }
-}
-
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
     classifier = 'src'
 }
 
 task deobfJar(type: Jar) {
-    manifest {
-        attributes 'FMLAT': 'enchiridion_at.cfg'
-    }
     from sourceSets.main.output
     classifier = 'dev'
 }
