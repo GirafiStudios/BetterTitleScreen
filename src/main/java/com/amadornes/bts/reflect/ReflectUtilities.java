@@ -12,11 +12,11 @@ public class ReflectUtilities {
     private static Field getField(Object object, Class<?> c, String name) {
         try {
             return object.getClass().getDeclaredField(name);
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
         try {
             return getField(object, c.getSuperclass(), name);
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
         return null;
     }

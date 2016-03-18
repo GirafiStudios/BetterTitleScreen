@@ -11,8 +11,8 @@ import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 public class ConfigurationHandler {
     public static Configuration config;
-    public static String CATEGORY_CUSTOM_TEXT = "custom text";
-    public static String DefaultText = "\u00A74B\u00A76E\u00A7eT\u00A72T\u00A73E\u00A71R \u00A75T\u00A74I\u00A76T\u00A7eL\u00A72E \u00A73S\u00A71C\u00A75R\u00A74E\u00A76E\u00A7eN";
+    public static final String CATEGORY_CUSTOM_TEXT = "custom text";
+    private static final String DefaultText = "\u00A74B\u00A76E\u00A7eT\u00A72T\u00A73E\u00A71R \u00A75T\u00A74I\u00A76T\u00A7eL\u00A72E \u00A73S\u00A71C\u00A75R\u00A74E\u00A76E\u00A7eN";
     public static String[] TitleScreenText;
     public static boolean TitleScreenMCVersion;
     public static boolean TitleScreenMCP;

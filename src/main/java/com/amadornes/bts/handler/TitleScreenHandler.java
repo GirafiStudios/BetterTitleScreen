@@ -11,7 +11,7 @@ import java.util.List;
 import static com.amadornes.bts.handler.ConfigurationHandler.*;
 
 public class TitleScreenHandler {
-    {
+    static {
         Field f = ReflectUtilities.getField(FMLCommonHandler.instance(), "brandings");
         f.setAccessible(true);
         try {
