@@ -30,10 +30,6 @@ minecraft {
     replaceIn "Reference.java"
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-}
-
 processResources {
     inputs.property "version", project.mod_version
     inputs.property "mcversion", project.minecraft.version
