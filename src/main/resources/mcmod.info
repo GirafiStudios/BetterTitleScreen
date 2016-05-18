@@ -1,6 +1,6 @@
 [
 {
-  "modid": "BetterTitleScreen",
+  "modid": "bettertitlescreen",
   "name": "Better Title Screen",
   "description": "Better Title Screen is a client-side mod that provides options to customize Minecraft's title screen.",
   "version": "${version}",
