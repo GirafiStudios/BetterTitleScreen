@@ -13,12 +13,12 @@ public class ConfigurationHandler {
     public static Configuration config;
     public static final String CATEGORY_CUSTOM_TEXT = "custom text";
     private static final String DefaultText = "\u00A74B\u00A76E\u00A7eT\u00A72T\u00A73E\u00A71R \u00A75T\u00A74I\u00A76T\u00A7eL\u00A72E \u00A73S\u00A71C\u00A75R\u00A74E\u00A76E\u00A7eN";
-    public static String[] TitleScreenText;
-    public static boolean TitleScreenMCVersion;
-    public static boolean TitleScreenMCP;
-    public static boolean TitleScreenFML;
-    public static boolean TitleScreenForge;
-    public static boolean TitleScreenMods;
+    static String[] TitleScreenText;
+    static boolean TitleScreenMCVersion;
+    static boolean TitleScreenMCP;
+    static boolean TitleScreenFML;
+    static boolean TitleScreenForge;
+    static boolean TitleScreenMods;
 
     public static void init(File configFile) {
         if (config == null) {

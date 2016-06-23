@@ -3,7 +3,7 @@ package com.amadornes.bts.client.gui;
 import com.amadornes.bts.handler.ConfigurationHandler;
 import com.amadornes.bts.reference.Reference;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.config.DummyConfigElement;
@@ -24,8 +24,8 @@ public class InGameGuiConfig extends GuiConfig {
         List<IConfigElement> listCustomText = new ConfigElement(ConfigurationHandler.config.getCategory(ConfigurationHandler.CATEGORY_CUSTOM_TEXT)).getChildElements();
         List<IConfigElement> general = new ConfigElement(ConfigurationHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements();
 
-        list.add(new DummyConfigElement.DummyCategoryElement(I18n.translateToLocal(Reference.MOD_ID + ".config.category.listCustomText.title"), Reference.MOD_ID + ".config.category.listCustomText", listCustomText));
-        list.add(new DummyConfigElement.DummyCategoryElement(I18n.translateToLocal(Reference.MOD_ID + ".config.category.general.title"), Reference.MOD_ID + ".config.category.general", general));
+        list.add(new DummyConfigElement.DummyCategoryElement(I18n.format(Reference.MOD_ID + ".config.category.listCustomText.title"), Reference.MOD_ID + ".config.category.listCustomText", listCustomText));
+        list.add(new DummyConfigElement.DummyCategoryElement(I18n.format(Reference.MOD_ID + ".config.category.general.title"), Reference.MOD_ID + ".config.category.general", general));
 
         return list;
     }
