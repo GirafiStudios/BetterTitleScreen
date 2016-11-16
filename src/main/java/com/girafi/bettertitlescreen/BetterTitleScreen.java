@@ -1,8 +1,8 @@
-package com.amadornes.bts;
+package com.girafi.bettertitlescreen;
 
-import com.amadornes.bts.handler.ConfigurationHandler;
-import com.amadornes.bts.handler.TitleScreenHandler;
-import com.amadornes.bts.reference.Reference;
+import com.girafi.bettertitlescreen.handler.ConfigurationHandler;
+import com.girafi.bettertitlescreen.handler.TitleScreenHandler;
+import com.girafi.bettertitlescreen.reference.Reference;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
