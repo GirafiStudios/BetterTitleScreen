@@ -1,28 +1,39 @@
 package com.girafi.bettertitlescreen.client.gui;
 
-import net.minecraft.client.Minecraft;
+import com.girafi.bettertitlescreen.handler.ConfigurationHandler;
+import com.girafi.bettertitlescreen.reference.Reference;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraft.client.resources.I18n;
+import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.DefaultGuiFactory;
+import net.minecraftforge.fml.client.config.DummyConfigElement;
+import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.IConfigElement;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GuiFactory implements IModGuiFactory {
-    @Override
-    public void initialize(Minecraft minecraftInstance) {
+public class GuiFactory extends DefaultGuiFactory {
+
+    public GuiFactory() {
+        super(Reference.MOD_ID, GuiConfig.getAbridgedConfigPath(ConfigurationHandler.config.toString()));
     }
 
     @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return InGameGuiConfig.class;
+    public GuiScreen createConfigGui(GuiScreen parentScreen) {
+        return new GuiConfig(parentScreen, getConfigElements(), Reference.MOD_ID, false, false, title);
     }
 
-    @Override
-    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
-        return null;
-    }
+    private static List<IConfigElement> getConfigElements() {
+        List<IConfigElement> list = new ArrayList<IConfigElement>();
 
-    @Override
-    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
-        return null;
+        List<IConfigElement> listCustomText = new ConfigElement(ConfigurationHandler.config.getCategory(ConfigurationHandler.CATEGORY_CUSTOM_TEXT)).getChildElements();
+        List<IConfigElement> general = new ConfigElement(ConfigurationHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements();
+
+        list.add(new DummyConfigElement.DummyCategoryElement(I18n.format(Reference.MOD_ID + ".config.category.listCustomText.title"), Reference.MOD_ID + ".config.category.listCustomText", listCustomText));
+        list.add(new DummyConfigElement.DummyCategoryElement(I18n.format(Reference.MOD_ID + ".config.category.general.title"), Reference.MOD_ID + ".config.category.general", general));
+
+        return list;
     }
 }
