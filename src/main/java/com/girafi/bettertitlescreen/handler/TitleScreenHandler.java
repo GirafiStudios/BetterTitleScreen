@@ -16,8 +16,8 @@ public class TitleScreenHandler {
         f.setAccessible(true);
         try {
             FMLCommonHandler.instance().computeBranding();
-            List<String> brands = new ArrayList<String>((List<String>) f.get(FMLCommonHandler.instance()));
-            List<String> newBrands = new ArrayList<String>();
+            List<String> brands = new ArrayList<>((List<String>) f.get(FMLCommonHandler.instance()));
+            List<String> newBrands = new ArrayList<>();
 
             f.set(FMLCommonHandler.instance(), newBrands);
 

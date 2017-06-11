@@ -26,7 +26,7 @@ public class GuiFactory extends DefaultGuiFactory {
     }
 
     private static List<IConfigElement> getConfigElements() {
-        List<IConfigElement> list = new ArrayList<IConfigElement>();
+        List<IConfigElement> list = new ArrayList<>();
 
         List<IConfigElement> listCustomText = new ConfigElement(ConfigurationHandler.config.getCategory(ConfigurationHandler.CATEGORY_CUSTOM_TEXT)).getChildElements();
         List<IConfigElement> general = new ConfigElement(ConfigurationHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements();
