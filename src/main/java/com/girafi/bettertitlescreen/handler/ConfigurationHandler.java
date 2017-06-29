@@ -3,12 +3,14 @@ package com.girafi.bettertitlescreen.handler;
 import com.girafi.bettertitlescreen.reference.Reference;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.io.File;
 
 import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
+@EventBusSubscriber
 public class ConfigurationHandler {
     public static Configuration config;
     public static final String CATEGORY_CUSTOM_TEXT = "custom text";
@@ -41,7 +43,7 @@ public class ConfigurationHandler {
     }
 
     @SubscribeEvent
-    public void OnConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
+    public static void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
         if (event.getModID().equalsIgnoreCase(Reference.MOD_ID)) {
             loadConfiguration();
         }

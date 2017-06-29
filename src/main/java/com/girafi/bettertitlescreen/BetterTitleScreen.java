@@ -14,7 +14,6 @@ public class BetterTitleScreen {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
-        MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
     }
 
     @EventHandler
