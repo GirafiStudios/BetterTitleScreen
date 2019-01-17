@@ -1,51 +1,67 @@
 package com.girafi.bettertitlescreen.handler;
 
 import com.girafi.bettertitlescreen.reference.Reference;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import com.google.common.collect.Lists;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.io.File;
-
-import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
+import java.nio.file.Path;
+import java.util.List;
 
 @EventBusSubscriber
 public class ConfigurationHandler {
-    public static Configuration config;
-    public static final String CATEGORY_CUSTOM_TEXT = "custom text";
-    private static final String DEFAULT_TEXT = "\u00A74B\u00A76E\u00A7eT\u00A72T\u00A73E\u00A71R \u00A75T\u00A74I\u00A76T\u00A7eL\u00A72E \u00A73S\u00A71C\u00A75R\u00A74E\u00A76E\u00A7eN";
-    static String[] TitleScreenText;
-    static boolean TitleScreenMCVersion;
-    static boolean TitleScreenMCP;
-    static boolean TitleScreenFML;
-    static boolean TitleScreenForge;
-    static boolean TitleScreenMods;
+    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public static final CustomText CUSTOM_TEXT = new CustomText(BUILDER);
+    public static final General GENERAL = new General(BUILDER);
 
-    public static void init(File configFile) {
-        if (config == null) {
-            config = new Configuration(configFile);
-            loadConfiguration();
+    public static class CustomText {
+        public final ForgeConfigSpec.ConfigValue<List<? extends String>> titleScreenText;
+        static final String DEFAULT_TEXT = "\u00A74B\u00A76E\u00A7eT\u00A72T\u00A73E\u00A71R \u00A75T\u00A74I\u00A76T\u00A7eL\u00A72E \u00A73S\u00A71C\u00A75R\u00A74E\u00A76E\u00A7eN";
+
+        private static final ForgeConfigSpec spec = BUILDER.build();
+
+        CustomText(ForgeConfigSpec.Builder builder) {
+            builder.push("custom text");
+            titleScreenText = builder
+                    .comment("Insert the custom title screen text you want here (supports multiple lines)")
+                    .translation("bettertitlescreen.configgui.titleScreenText")
+                    .defineList("text", Lists.newArrayList(DEFAULT_TEXT), o -> o instanceof String);
+            builder.pop();
         }
     }
 
-    private static void loadConfiguration() {
-        TitleScreenText = config.getStringList("Text", CATEGORY_CUSTOM_TEXT, new String[]{DEFAULT_TEXT}, "Insert the text you want here (supports multiple lines).");
-        TitleScreenMCVersion = config.getBoolean("Show MC version", CATEGORY_GENERAL, true, "Show which version of Minecraft the client is currently running.");
-        TitleScreenMCP = config.getBoolean("Show MCP version", CATEGORY_GENERAL, false, "Show which version of Minecraft Coder Pack (MCP) the client is running.");
-        TitleScreenFML = config.getBoolean("Show FML version", CATEGORY_GENERAL, false, "Show which version of Forge Mod Loader (FML) the client is running.");
-        TitleScreenForge = config.getBoolean("Show Forge version", CATEGORY_GENERAL, false, "Show which version of Minecraft Forge the client is running.");
-        TitleScreenMods = config.getBoolean("Show mods loaded", CATEGORY_GENERAL, true, "Show how many mods are loaded.");
+    public static class General {
+        public final ForgeConfigSpec.BooleanValue titleScreenMCVersion;
+        public final ForgeConfigSpec.BooleanValue titleScreenMCP;
+        public final ForgeConfigSpec.BooleanValue titleScreenForge;
+        public final ForgeConfigSpec.BooleanValue titleScreenMods;
 
-        if (config.hasChanged()) {
-            config.save();
+        General(ForgeConfigSpec.Builder builder) {
+            builder.push("versions");
+            titleScreenMCVersion = builder
+                    .comment("Show which version of Minecraft the client is currently running.")
+                    .translation("bettertitlescreen.configgui.mcVersion")
+                    .define("showMcVersion", true);
+            titleScreenMCP = builder
+                    .comment("Show which version of Minecraft Coder Pack (MCP) the client is running.")
+                    .translation("bettertitlescreen.configgui.mcpVersion")
+                    .define("showMcpVersion", false);
+            titleScreenForge = builder
+                    .comment("Show which version of Minecraft Forge the client is running.")
+                    .translation("bettertitlescreen.configgui.forgeVersion")
+                    .define("showForgeVersion", false);
+            titleScreenMods = builder
+                    .comment("Show how many mods are loaded.")
+                    .translation("bettertitlescreen.configgui.modsLoaded")
+                    .define("showModsLoaded", false);
+            builder.pop();
         }
     }
 
-    @SubscribeEvent
-    public static void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
-        if (event.getModID().equalsIgnoreCase(Reference.MOD_ID)) {
-            loadConfiguration();
-        }
+    private static final ForgeConfigSpec spec = BUILDER.build();
+
+    public static void loadFrom(final Path configRoot) {
+        Path configFile = configRoot.resolve(Reference.MOD_ID + ".toml");
+        spec.setConfigFile(configFile);
     }
 }

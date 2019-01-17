@@ -3,21 +3,25 @@ package com.girafi.bettertitlescreen;
 import com.girafi.bettertitlescreen.handler.ConfigurationHandler;
 import com.girafi.bettertitlescreen.handler.TitleScreenHandler;
 import com.girafi.bettertitlescreen.reference.Reference;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.javafmlmod.FMLModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, clientSideOnly = true, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
+@Mod(Reference.MOD_ID)
 public class BetterTitleScreen {
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+
+    public BetterTitleScreen() {
+        FMLModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
     }
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new TitleScreenHandler());
+    private void setup(final FMLCommonSetupEvent event) {
+        ConfigurationHandler.loadFrom(FMLPaths.CONFIGDIR.get());
+    }
+
+    private void loadComplete(final FMLLoadCompleteEvent event) {
+        TitleScreenHandler.init();
     }
 }

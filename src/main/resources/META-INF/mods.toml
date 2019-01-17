@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[24,)"
+issueTrackerURL="https://github.com/GirafiStudios/BetterTitleScreen/issues"
+displayURL="http://minecraft.curseforge.com/mc-mods/224223"
+logoFile="logo.png"
+credits="All credits go to Amadornes, the original author of Better Title Screen."
+authors="Girafi, Amadornes" 
+[[mods]] #mandatory
+modId="bettertitlescreen"
+version="${version}"
+displayName="Better Title Screen"
+description='''
+Better Title Screen is a client-side mod that provides options to customize Minecraft's title screen.
+'''

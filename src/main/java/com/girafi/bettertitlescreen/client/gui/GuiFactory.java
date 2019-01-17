@@ -1,3 +1,4 @@
+/*
 package com.girafi.bettertitlescreen.client.gui;
 
 import com.girafi.bettertitlescreen.handler.ConfigurationHandler;
@@ -36,4 +37,4 @@ public class GuiFactory extends DefaultGuiFactory {
 
         return list;
     }
-}
+}*/
