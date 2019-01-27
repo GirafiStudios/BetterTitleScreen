@@ -3,12 +3,10 @@ package com.girafi.bettertitlescreen.handler;
 import com.girafi.bettertitlescreen.reference.Reference;
 import com.google.common.collect.Lists;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.nio.file.Path;
 import java.util.List;
 
-@EventBusSubscriber
 public class ConfigurationHandler {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final CustomText CUSTOM_TEXT = new CustomText(BUILDER);
@@ -17,8 +15,6 @@ public class ConfigurationHandler {
     public static class CustomText {
         public final ForgeConfigSpec.ConfigValue<List<? extends String>> titleScreenText;
         static final String DEFAULT_TEXT = "\u00A74B\u00A76E\u00A7eT\u00A72T\u00A73E\u00A71R \u00A75T\u00A74I\u00A76T\u00A7eL\u00A72E \u00A73S\u00A71C\u00A75R\u00A74E\u00A76E\u00A7eN";
-
-        private static final ForgeConfigSpec spec = BUILDER.build();
 
         CustomText(ForgeConfigSpec.Builder builder) {
             builder.push("custom text");

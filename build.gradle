@@ -11,11 +11,11 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
 version = "${minecraft_version}-${mod_version}"
 group = "com.girafi.bettertitlescreen"
 archivesBaseName = "BetterTitleScreen"
-
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
     mappings channel: 'stable', version: '43-1.13'
