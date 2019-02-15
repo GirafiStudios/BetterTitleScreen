@@ -16,11 +16,9 @@ public class BetterTitleScreen {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigurationHandler.spec);
-        System.out.println("BTS INIT");
     }
 
     private void loadComplete(final FMLLoadCompleteEvent event) {
         TitleScreenHandler.init();
-        System.out.println("BTS LOAD COMPLETE");
     }
 }
