@@ -3,25 +3,24 @@ package com.girafi.bettertitlescreen;
 import com.girafi.bettertitlescreen.handler.ConfigurationHandler;
 import com.girafi.bettertitlescreen.handler.TitleScreenHandler;
 import com.girafi.bettertitlescreen.reference.Reference;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.javafmlmod.FMLModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Reference.MOD_ID)
 public class BetterTitleScreen {
 
     public BetterTitleScreen() {
-        FMLModLoadingContext.get().getModEventBus().addListener(this::setup);
-        FMLModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
-    }
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
 
-    private void setup(final FMLCommonSetupEvent event) {
-        ConfigurationHandler.loadFrom(FMLPaths.CONFIGDIR.get());
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigurationHandler.spec);
+        System.out.println("BTS INIT");
     }
 
     private void loadComplete(final FMLLoadCompleteEvent event) {
         TitleScreenHandler.init();
+        System.out.println("BTS LOAD COMPLETE");
     }
 }

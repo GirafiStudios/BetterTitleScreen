@@ -9,7 +9,6 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
@@ -18,7 +17,7 @@ group = "com.girafi.bettertitlescreen"
 archivesBaseName = "BetterTitleScreen"
 
 minecraft {
-    mappings channel: 'stable', version: '43-1.13'
+    mappings channel: 'snapshot', version: '20190215-1.13.1'
 
     runs {
         client = {
@@ -32,7 +31,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft "net.minecraftforge.test:forge:${minecraft_version}-${forge_version}"
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 }
 
 processResources {

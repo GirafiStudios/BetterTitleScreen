@@ -1,10 +1,8 @@
 package com.girafi.bettertitlescreen.handler;
 
-import com.girafi.bettertitlescreen.reference.Reference;
 import com.google.common.collect.Lists;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-import java.nio.file.Path;
 import java.util.List;
 
 public class ConfigurationHandler {
@@ -54,10 +52,5 @@ public class ConfigurationHandler {
         }
     }
 
-    private static final ForgeConfigSpec spec = BUILDER.build();
-
-    public static void loadFrom(final Path configRoot) {
-        Path configFile = configRoot.resolve(Reference.MOD_ID + ".toml");
-        spec.setConfigFile(configFile);
-    }
+    public static final ForgeConfigSpec spec = BUILDER.build();
 }
