@@ -5,7 +5,7 @@ logoFile="logo.png"
 
 [[mods]]
     modId="bettertitlescreen"
-    version="${version}"
+    version="${file.jarVersion}"
     side="CLIENT"
     displayName="Better Title Screen"
     displayURL="http://minecraft.curseforge.com/mc-mods/224223"

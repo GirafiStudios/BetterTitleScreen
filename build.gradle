@@ -34,15 +34,10 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 }
 
-processResources {
-    inputs.property 'version', project.version
-    inputs.property 'mcversion', "${minecraft_version}"
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'META_INF/mods.toml'
-        expand 'version':project.version, 'mcversion': "${minecraft_version}"
-    }
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'META_INF/mods.toml'
+jar {
+    manifest {
+        attributes([
+            "Implementation-Version": "${version}"
+        ])
     }
 }
