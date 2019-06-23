@@ -14,11 +14,12 @@ public class BetterTitleScreen {
 
     public BetterTitleScreen() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
-
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigurationHandler.spec);
     }
 
     private void loadComplete(final FMLLoadCompleteEvent event) {
+        System.out.println("LOAD COMPLETE START");
         TitleScreenHandler.init();
+        System.out.println("LOAD COMPLETE");
     }
 }

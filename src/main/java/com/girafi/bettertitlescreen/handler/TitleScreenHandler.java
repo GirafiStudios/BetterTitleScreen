@@ -38,6 +38,7 @@ public class TitleScreenHandler {
             if (ConfigurationHandler.GENERAL.titleScreenMods.get()) {
                 newBrands.add(brands.get(3));
             }
+            System.out.println("Last: " + f.get(brandingControl));
         } catch (Exception e) {
             e.printStackTrace();
         }
