@@ -17,7 +17,7 @@ group = "com.girafi.bettertitlescreen"
 archivesBaseName = "BetterTitleScreen"
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190627-1.14.3'
+    mappings channel: 'snapshot', version: project.mappings + "-" + "1.14.3"
 
     runs {
         client = {
