@@ -49,13 +49,13 @@ public class TitleScreenHandler implements ISelectiveResourceReloadListener {
                 f.set(brandingControl, newBrands);
                 newBrands.addAll(ConfigurationHandler.CUSTOM_TEXT.titleScreenText.get());
 
-                if (ConfigurationHandler.GENERAL.titleScreenMCVersion.get()) {
+                if (ConfigurationHandler.GENERAL.titleScreenForge.get()) {
                     newBrands.add(brands.get(0));
                 }
-                if (ConfigurationHandler.GENERAL.titleScreenMCP.get()) {
+                if (ConfigurationHandler.GENERAL.titleScreenMCVersion.get()) {
                     newBrands.add(brands.get(1));
                 }
-                if (ConfigurationHandler.GENERAL.titleScreenForge.get()) {
+                if (ConfigurationHandler.GENERAL.titleScreenMCP.get()) {
                     newBrands.add(brands.get(2));
                 }
                 if (ConfigurationHandler.GENERAL.titleScreenMods.get()) {
