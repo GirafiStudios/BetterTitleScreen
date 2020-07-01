@@ -20,12 +20,22 @@ minecraft {
     mappings channel: 'snapshot', version: project.mappings
 
     runs {
-        client = {
-            workingDirectory project.file('run').canonicalPath
-            source sourceSets.main
+        client {
+            workingDirectory project.file('run')
+            mods {
+                bettertitlescreen {
+                    source sourceSets.main
+                }
+            }
         }
-        server = {
-            workingDirectory project.file('run').canonicalPath
+
+        server {
+            workingDirectory project.file('run')
+            mods {
+                bettertitlescreen {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
