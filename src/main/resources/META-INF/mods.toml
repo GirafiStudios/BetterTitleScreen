@@ -2,6 +2,7 @@ modLoader="javafml"
 loaderVersion="[32,)"
 issueTrackerURL="https://github.com/GirafiStudios/BetterTitleScreen/issues"
 logoFile="logo.png"
+license="GNU General Public License v3.0"
 
 [[mods]]
     modId="bettertitlescreen"
