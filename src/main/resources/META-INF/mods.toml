@@ -1,8 +1,8 @@
 modLoader="javafml"
-loaderVersion="[32,)"
+loaderVersion="[37,)"
 issueTrackerURL="https://github.com/GirafiStudios/BetterTitleScreen/issues"
 logoFile="logo.png"
-license="GNU General Public License v3.0"
+license="All Right Reserved"
 
 [[mods]]
     modId="bettertitlescreen"
@@ -15,3 +15,10 @@ license="GNU General Public License v3.0"
     description='''
     Better Title Screen is a client-side mod that provides options to customize Minecraft's title screen.
     '''
+
+[[dependencies.waddles]]
+    modId="forge"
+    mandatory=true
+    versionRange="[37,)"
+    ordering="AFTER"
+    side="BOTH"

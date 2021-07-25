@@ -1,32 +1,25 @@
 package com.girafi.bettertitlescreen.handler;
 
 import com.girafi.bettertitlescreen.BetterTitleScreen;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.MainMenuScreen;
-import net.minecraft.resources.IReloadableResourceManager;
-import net.minecraft.resources.IResourceManager;
+import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.BrandingControl;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.resource.IResourceType;
-import net.minecraftforge.resource.ISelectiveResourceReloadListener;
+import net.minecraftforge.fmllegacy.BrandingControl;
 
-import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber(modid = BetterTitleScreen.MOD_ID, value = Dist.CLIENT)
-public class TitleScreenHandler implements ISelectiveResourceReloadListener {
+public class TitleScreenHandler {
     private static boolean hasLoaded = false;
 
     @SubscribeEvent
     public static void openMainMenu(final GuiScreenEvent.InitGuiEvent.Post event) {
-        if (event.getGui() instanceof MainMenuScreen) {
+        if (event.getGui() instanceof TitleScreen) {
             TitleScreenHandler.init();
         }
     }
@@ -66,15 +59,5 @@ public class TitleScreenHandler implements ISelectiveResourceReloadListener {
             }
             hasLoaded = true;
         }
-    }
-
-    public static void registerReloadListener() {
-        ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new TitleScreenHandler());
-    }
-
-    @Override
-    public void onResourceManagerReload(@Nonnull IResourceManager resourceManager, @Nonnull Predicate<IResourceType> resourcePredicate) {
-        hasLoaded = false;
-        init();
     }
 }
