@@ -3,10 +3,10 @@ package com.girafi.bettertitlescreen.handler;
 import com.girafi.bettertitlescreen.BetterTitleScreen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmllegacy.BrandingControl;
+import net.minecraftforge.internal.BrandingControl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -18,8 +18,8 @@ public class TitleScreenHandler {
     private static boolean hasLoaded = false;
 
     @SubscribeEvent
-    public static void openMainMenu(final GuiScreenEvent.InitGuiEvent.Post event) {
-        if (event.getGui() instanceof TitleScreen) {
+    public static void openMainMenu(final ScreenEvent.InitScreenEvent.Post event) {
+        if (event.getScreen() instanceof TitleScreen) {
             TitleScreenHandler.init();
         }
     }

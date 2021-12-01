@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[38,)"
 issueTrackerURL="https://github.com/GirafiStudios/BetterTitleScreen/issues"
 logoFile="logo.png"
 license="All Right Reserved"
@@ -19,6 +19,6 @@ license="All Right Reserved"
 [[dependencies.waddles]]
     modId="forge"
     mandatory=true
-    versionRange="[37,)"
+    versionRange="[38,)"
     ordering="AFTER"
     side="BOTH"
