@@ -18,7 +18,7 @@ public class TitleScreenHandler {
     private static boolean hasLoaded = false;
 
     @SubscribeEvent
-    public static void openMainMenu(final ScreenEvent.InitScreenEvent.Post event) {
+    public static void openMainMenu(final ScreenEvent.Init event) {
         if (event.getScreen() instanceof TitleScreen) {
             TitleScreenHandler.init();
         }

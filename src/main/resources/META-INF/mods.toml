@@ -19,6 +19,6 @@ license="All Right Reserved"
 [[dependencies.waddles]]
     modId="forge"
     mandatory=true
-    versionRange="[41,)"
+    versionRange="[41.0.64,)"
     ordering="AFTER"
     side="BOTH"
