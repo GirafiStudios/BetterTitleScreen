@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="[41,)"
+loaderVersion="${loader_version_range}"
 issueTrackerURL="https://github.com/GirafiStudios/BetterTitleScreen/issues"
 logoFile="logo.png"
 license="All Right Reserved"
 
 [[mods]]
     modId="bettertitlescreen"
-    version="${file.jarVersion}"
+    version="${mod_version}"
     side="CLIENT"
     displayName="Better Title Screen"
     displayURL="http://minecraft.curseforge.com/mc-mods/224223"
@@ -19,6 +19,6 @@ license="All Right Reserved"
 [[dependencies.waddles]]
     modId="forge"
     mandatory=true
-    versionRange="[41.0.64,)"
+    versionRange="${forge_version_range}"
     ordering="AFTER"
     side="BOTH"
