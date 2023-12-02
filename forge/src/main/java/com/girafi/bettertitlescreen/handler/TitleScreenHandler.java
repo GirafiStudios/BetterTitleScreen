@@ -1,6 +1,7 @@
 package com.girafi.bettertitlescreen.handler;
 
 import com.girafi.bettertitlescreen.BetterTitleScreen;
+import com.girafi.bettertitlescreen.Constants;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ScreenEvent;
@@ -13,12 +14,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = BetterTitleScreen.MOD_ID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class TitleScreenHandler {
     private static boolean hasLoaded = false;
 
     @SubscribeEvent
-    public static void openMainMenu(final ScreenEvent.Init event) {
+    public static void openMainMenu(final ScreenEvent.Init.Pre event) {
         if (event.getScreen() instanceof TitleScreen) {
             TitleScreenHandler.init();
         }

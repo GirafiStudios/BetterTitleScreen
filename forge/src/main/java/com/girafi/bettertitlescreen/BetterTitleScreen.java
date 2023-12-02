@@ -5,11 +5,11 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 
-@Mod(BetterTitleScreen.MOD_ID)
+@Mod(value = Constants.MOD_ID)
 public class BetterTitleScreen {
-    public static final String MOD_ID = "bettertitlescreen";
 
     public BetterTitleScreen() {
+        CommonClass.init();
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigurationHandler.spec);
     }
 }

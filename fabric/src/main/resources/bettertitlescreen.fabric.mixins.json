@@ -1,0 +1,18 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.girafi.bettertitlescreen.mixin",
+    "refmap": "${mod_id}.refmap.json",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "MixinTitleScreen"
+    ],
+    "client": [
+    ],
+    "server": [
+
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
