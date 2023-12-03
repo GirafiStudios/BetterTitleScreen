@@ -1,7 +1,7 @@
 package com.girafi.bettertitlescreen.handler;
 
 import com.google.common.collect.Lists;
-import net.neoforged.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.List;
 
