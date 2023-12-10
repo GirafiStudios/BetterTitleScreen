@@ -9,7 +9,6 @@ import net.minecraftforge.fml.config.ModConfig;
 public class BetterTitleScreen {
 
     public BetterTitleScreen() {
-        CommonClass.init();
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ConfigurationHandler.spec);
     }
 }

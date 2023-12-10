@@ -1,6 +1,5 @@
 package com.girafi.bettertitlescreen.handler;
 
-import com.girafi.bettertitlescreen.BetterTitleScreen;
 import com.girafi.bettertitlescreen.Constants;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraftforge.api.distmarker.Dist;

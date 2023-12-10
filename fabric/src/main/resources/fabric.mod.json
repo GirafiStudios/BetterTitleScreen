@@ -15,7 +15,7 @@
     "icon": "assets/${mod_id}/logo.png",
     "environment": "*",
     "entrypoints": {
-        "main": [
+        "client": [
             "com.girafi.bettertitlescreen.BetterTitleScreen"
         ]
     },
