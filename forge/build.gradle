@@ -6,6 +6,8 @@ base {
     archivesName = "${mod_name}-forge-${minecraft_version}"
 }
 
+version = "${version}${buildnumber}"
+
 minecraft {
     mappings channel: 'official', version: minecraft_version
 
