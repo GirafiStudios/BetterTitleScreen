@@ -23,9 +23,9 @@
         "${mod_id}.fabric.mixins.json"
     ],
     "depends": {
-        "fabricloader": ">=0.15.1",
+        "fabricloader": ">=0.16.0",
         "fabric-api": "*",
-        "minecraft": ">=1.21",
+        "minecraft": ">=1.21.3",
         "java": ">=21",
         "forgeconfigapiport": ">=21.0.0"
     }
