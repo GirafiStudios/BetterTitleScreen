@@ -27,9 +27,12 @@ ext {
 
         def expanded = expand(minVer, maxVer)
 
-        [
+        def returnMap = [
                 list: expanded,   // For Modrinth
                 quoted: expanded  // For CurseForge
         ]
+
+        println "parseVersionRange returning: $returnMap"
+        return returnMap
     }
 }
