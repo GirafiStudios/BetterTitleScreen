@@ -35,9 +35,9 @@ public class ConfigurationHandler {
                     .translation("bettertitlescreen.configgui.mcVersion")
                     .define("showMcVersion", true);
             titleScreenFabric = builder
-                    .comment("Show the Fabric suffix, after the Minecraft version (By default Fabric behavior)")
+                    .comment("Show the Fabric suffix, after the Minecraft version (Not default Fabric behavior anymore)")
                     .translation("bettertitlescreen.configgui.forgeVersion")
-                    .define("showFabric", true);
+                    .define("showFabric", false);
             builder.pop();
         }
     }

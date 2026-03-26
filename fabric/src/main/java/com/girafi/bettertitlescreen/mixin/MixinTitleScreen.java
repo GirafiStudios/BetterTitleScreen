@@ -2,7 +2,7 @@ package com.girafi.bettertitlescreen.mixin;
 
 import com.girafi.bettertitlescreen.handler.ConfigurationHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.util.ARGB;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,25 +17,24 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Mixin(TitleScreen.class)
 public class MixinTitleScreen {
-    private float fadeValue;
+    private float widgetFade;
 
-    @ModifyArg(method = "render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V"),
+    @ModifyArg(method = "extractRenderState(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;text(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V"),
             index = 1)
-    private String modifyDefaultTitle(String defaultTitle) {
+    private String modifyDefaultTitle(String defaultTitle) { //Options to disable default
         //System.out.println("modifyDefaultTitle");
         String[] args = defaultTitle.split("/");
         String mc = args[0];
-        String fabric = args[1];
 
         return (ConfigurationHandler.GENERAL.titleScreenMCVersion.get() ? mc : "")
                 + (isMCandFabric() ? "/" : "")
-                + (ConfigurationHandler.GENERAL.titleScreenFabric.get() ? fabric : "");
+                + (ConfigurationHandler.GENERAL.titleScreenFabric.get() ? "Fabric" : "");
     }
 
-    @Inject(method = "render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V"))
-    private void injectTitle(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo callbackInfo) { //Injects title before default vanilla drawString method
+    @Inject(method = "extractRenderState(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;text(Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V"))
+    private void injectTitle(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo callbackInfo) { //Injects title before default vanilla drawString method
         TitleScreen titleScreen = (TitleScreen) (Object) this;
         Minecraft mc = Minecraft.getInstance();
         List<? extends String> titleList = ConfigurationHandler.CUSTOM_TEXT.titleScreenText.get();
@@ -43,15 +42,15 @@ public class MixinTitleScreen {
         AtomicInteger lineNo = new AtomicInteger();
         titleList.forEach((s) -> {
             lineNo.getAndIncrement();
-            guiGraphics.drawString(mc.font, s, 2, titleScreen.height - ((!isMCorFabric() ? 0 : 10) + (titleList.size() * 10) - (lineNo.get() * 10) + (mc.font.lineHeight + 1)), ARGB.white(this.fadeValue));
+            guiGraphics.text(mc.font, s, 2, titleScreen.height - ((!isMCorFabric() ? 0 : 10) + (titleList.size() * 10) - (lineNo.get() * 10) + (mc.font.lineHeight + 1)), ARGB.white(this.widgetFade));
         });
     }
 
-    @Redirect(method = "render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V",
+    @Redirect(method = "extractRenderState(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/util/ARGB;white(F)I"))
-    private float captureFadeValue(float f) {
-        this.fadeValue = f;
-        return f;
+    private int captureWidgetFade(float f) {
+        this.widgetFade = f;
+        return ARGB.white(f);
     }
 
     public boolean isMCandFabric() {

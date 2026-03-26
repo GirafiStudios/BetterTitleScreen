@@ -1,9 +1,9 @@
 plugins {
     id 'git-changelog'
     // see https://fabricmc.net/develop/ for new versions
-    id 'fabric-loom' version '1.14-SNAPSHOT' apply false
+    id 'net.fabricmc.fabric-loom' version '1.15-SNAPSHOT' apply false
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
-    id 'net.neoforged.moddev' version '2.0.123' apply false
+    id 'net.neoforged.moddev' version '2.0.141' apply false
 }
 
 ext {
@@ -11,12 +11,12 @@ ext {
         def cleaned = range.trim().substring(1, range.length() - 1)
         def (minVer, maxVerRaw) = cleaned.split(',')
 
-        def (maj, min, patch) = maxVerRaw.tokenize('.').collect { it.toInteger() }
+        def (maj, min, patch) = (maxVerRaw.tokenize('.').collect { it.toInteger() } + [0, 0, 0]).take(3)
         def maxVer = "${maj}.${min}.${patch - 1}"
 
         def expand = { a, b ->
-            def (majA, minA, patchA) = a.tokenize('.').collect { it.toInteger() }
-            def (majB, minB, patchB) = b.tokenize('.').collect { it.toInteger() }
+            def (majA, minA, patchA) = (a.tokenize('.').collect { it.toInteger() } + [0, 0, 0]).take(3)
+            def (majB, minB, patchB) = (b.tokenize('.').collect { it.toInteger() } + [0, 0, 0]).take(3)
 
             def list = []
             for (p = patchA; p <= patchB; p++) {
