@@ -42,19 +42,21 @@ public class TitleScreenHandler {
                 f.set(brandingControl, newBrands);
                 newBrands.addAll(ConfigurationHandler.CUSTOM_TEXT.titleScreenText.get());
 
-                if (ConfigurationHandler.GENERAL.titleScreenForge.get()) {
+                if (ConfigurationHandler.GENERAL.titleScreenMCVersion.get()) {
                     newBrands.add(brands.get(0));
                 }
-                if (ConfigurationHandler.GENERAL.titleScreenMCVersion.get()) {
-                    newBrands.add(brands.get(1));
+                String[] parts = brands.get(1).split("\\(");
+                String neoVersion = parts[0];
+                String modsLoaded = parts[1].replace(")", "");
+                if (ConfigurationHandler.GENERAL.titleScreenNeoForge.get()) {
+                    newBrands.add(neoVersion + (ConfigurationHandler.GENERAL.titleScreenMods.get() ? " (" + modsLoaded + ")" : ""));
                 }
-                if (ConfigurationHandler.GENERAL.titleScreenMCP.get()) {
-                    newBrands.add(brands.get(2));
+
+                if (ConfigurationHandler.GENERAL.titleScreenMods.get() && !ConfigurationHandler.GENERAL.titleScreenNeoForge.get()) {
+                    newBrands.add(modsLoaded);
                 }
-                if (ConfigurationHandler.GENERAL.titleScreenMods.get()) {
-                    newBrands.add(brands.get(3));
-                }
-            } catch (Exception e) {
+
+                } catch (Exception e) {
                 e.printStackTrace();
             }
             hasLoaded = true;
