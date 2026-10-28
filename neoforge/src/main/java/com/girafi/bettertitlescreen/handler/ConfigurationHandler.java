@@ -26,8 +26,7 @@ public class ConfigurationHandler {
 
     public static class General {
         public final ModConfigSpec.BooleanValue titleScreenMCVersion;
-        public final ModConfigSpec.BooleanValue titleScreenMCP;
-        public final ModConfigSpec.BooleanValue titleScreenForge;
+        public final ModConfigSpec.BooleanValue titleScreenNeoForge;
         public final ModConfigSpec.BooleanValue titleScreenMods;
 
         General(ModConfigSpec.Builder builder) {
@@ -36,14 +35,10 @@ public class ConfigurationHandler {
                     .comment("Show which version of Minecraft the client is currently running.")
                     .translation("bettertitlescreen.configgui.mcVersion")
                     .define("showMcVersion", true);
-            titleScreenMCP = builder
-                    .comment("Show which version of Minecraft Coder Pack (MCP) the client is running.")
-                    .translation("bettertitlescreen.configgui.mcpVersion")
-                    .define("showMcpVersion", false);
-            titleScreenForge = builder
-                    .comment("Show which version of Minecraft Forge the client is running.")
+            titleScreenNeoForge = builder
+                    .comment("Show which version of NeoForge the client is running.")
                     .translation("bettertitlescreen.configgui.forgeVersion")
-                    .define("showForgeVersion", false);
+                    .define("showNeoForgeVersion", false);
             titleScreenMods = builder
                     .comment("Show how many mods are loaded.")
                     .translation("bettertitlescreen.configgui.modsLoaded")
