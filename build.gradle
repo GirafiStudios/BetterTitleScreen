@@ -1,35 +1,53 @@
 plugins {
     id 'git-changelog'
     // see https://fabricmc.net/develop/ for new versions
-    id 'fabric-loom' version '1.14-SNAPSHOT' apply false
+    id 'fabric-loom' version '1.19-SNAPSHOT' apply false
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
-    id 'net.neoforged.moddev' version '2.0.123' apply false
+    id 'net.neoforged.moddev' version '2.0.141' apply false
 }
 
 ext {
     parseVersionRange = { String range ->
-        def cleaned = range.trim().substring(1, range.length() - 1)
-        def (minVer, maxVerRaw) = cleaned.split(',')
+        // Parses ranges like "[1.21.1, 1.21.12)" (max exclusive) into [1.21.1, 1.21.2, ..., 1.21.11]
+        def trimmed = range.trim()
+        def cleaned = trimmed.substring(1, trimmed.length() - 1)
+        def (minVer, maxVerRaw) = cleaned.split(',').collect { it.trim() }
 
-        def (maj, min, patch) = maxVerRaw.tokenize('.').collect { it.toInteger() }
-        def maxVer = "${maj}.${min}.${patch - 1}"
-
-        def expand = { a, b ->
-            def (majA, minA, patchA) = a.tokenize('.').collect { it.toInteger() }
-            def (majB, minB, patchB) = b.tokenize('.').collect { it.toInteger() }
-
-            def list = []
-            for (p = patchA; p <= patchB; p++) {
-                list << "${majA}.${minA}.${p}"
-            }
-            return list
+        // Always returns [major, minor, patch]
+        def parts = { String v ->
+            def p = v.tokenize('.').collect { it.toInteger() }
+            while (p.size() < 3) p << 0
+            return p
         }
 
-        def expanded = expand(minVer, maxVer)
+        def (majA, minA, patA) = parts(minVer)
+        def (majB, minB, patB) = parts(maxVerRaw)
+        def maxInclusive = trimmed.endsWith(']')
 
-        [
-            list: expanded,   // For Modrinth
-            quoted: expanded  // For CurseForge
+        def format = { int ma, int mi, int pa ->
+            (pa == 0 ? "${ma}.${mi}" : "${ma}.${mi}.${pa}").toString()
+        }
+
+        def expanded = []
+        if (majA == majB && minA == minB) {
+            // Same major.minor: iterate over patch versions
+            for (int p = patA; maxInclusive ? p <= patB : p < patB; p++) {
+                expanded << format(majA, minA, p)
+            }
+        } else {
+            // Different minor versions: iterate over minors (patch ignored)
+            def lastMinor = (maxInclusive || patB > 0) ? minB : minB - 1
+            for (int m = minA; m <= lastMinor; m++) {
+                expanded << "${majA}.${m}".toString()
+            }
+        }
+
+        def returnMap = [
+                list: expanded,   // For Modrinth
+                quoted: expanded  // For CurseForge
         ]
+
+        println "parseVersionRange returning: $returnMap"
+        return returnMap
     }
 }
